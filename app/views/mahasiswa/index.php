@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
+        <button type="button" class="btn btn-primary tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal">
             Tambah Data Mahasiswa
         </button>
         <br><br>
@@ -16,18 +16,17 @@
         <ul class="list-group">
         <?php foreach( $data['mhs'] as $mhs ) : ?>
         <li class="list-group-item">
-            <?= $mhs['nama']; ?>
+            <?= $mhs['nama']; ?> 
             <a href=""class="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>" 
             class="badge badge-danger floar-right ml-1"onclick="return confirm('yakin?');">hapus</a>
-            <a href=""class="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" 
+            <a href=""class="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id']; ?>" 
+            class="badge badge-success float-right tampilModalUbah"data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?=$mhs['id'] ?>>ubah</a>
+            <a href="class="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" 
             class="badge badge-primary float-right ml-1">detai</a>
         </li>
         <?php endforeach; ?>
 
 </ul>
-            
-
-
 </div>
 
 
@@ -36,7 +35,7 @@
     <div class="modal-dialod" role="document">
         <div class="modal-content">
             <diva class="modal-header">
-                <h5 class="modal-title" id="judulModal">Tambah Data Mahasiswa</h5>
+                <h5 class="modal-title" id="formModalLabel">Tambah Data Mahasiswa</h5>
                 <button type="button" class="close" data-dismis="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
         </button>
@@ -44,6 +43,7 @@
         <div class="modal-body">
             
         <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+            <input type="hidden" name="id" id="id">
             <div class="form-group">
   <label for="nama">nama</label>
   <input type="text" class="form-control" id="nama"  name="nama">
